@@ -85,6 +85,22 @@ class LinkedList {
             return this.getNode(middleNodeIndex)
         }
     }
+
+    //algorithm "tortoise and hare"
+    findMiddleNodeSolution(){
+        // Initialize slow and fast pointers at head
+        let slow = this.head;
+        let fast = this.head;
+        // Iterate through the list
+        while (fast !== null && fast.next !== null) {
+            // Move slow pointer one step
+            slow = slow.next;
+            // Move fast pointer two steps
+            fast = fast.next.next;
+        }
+        // Return middle node when fast reaches end
+        return slow;
+    }
 }
 
 let myLinkedList = new LinkedList(1);
