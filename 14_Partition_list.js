@@ -187,29 +187,67 @@ class LinkedList {
     //   |   `dummy1.next`.                                  |
     //   +===================================================+
 
-    partitionList(x){
-        if(this.length < 2){
-            return;
-        }
-        let dummy1 = new Node(-1);
-        let dummy2 = new Node(-1);
+    // partitionList(x){
+    //     if(this.length < 2){
+    //         return;
+    //     }
+    //     let dummy1 = new Node(-1);
+    //     let dummy2 = new Node(-1);
+    //     let prev1 = dummy1;
+    //     let prev2 = dummy2;
+    //     let current = this.head;
+    //     while(current !== null){
+    //         if(current.value < x){
+    //             prev1.next = current;
+    //             prev1 = current;
+    //         }else{
+    //             prev2.next = current;
+    //             prev2 = current;
+    //         }
+    //         current = current.next;
+    //     }
+    //     prev1.next = dummy2.next;
+    //     prev2.next = null;
+    //     this.head = dummy1.next;
+    //     return this
+    // }
+
+    partitionList(x) {
+        // If the list is empty, do nothing
+        if (this.head === null) return;
+     
+        // Create dummy nodes for two sublists
+        const dummy1 = new Node(0);
+        const dummy2 = new Node(0);
+        // Initialize prev pointers for sublists
         let prev1 = dummy1;
         let prev2 = dummy2;
+        // Initialize current pointer at head
         let current = this.head;
-        while(current !== null){
-            if(current.value < x){
+     
+        // Iterate through the list
+        while (current !== null) {
+            // If current value is less than x
+            if (current.value < x) {
+                // Add current node to the first sublist
                 prev1.next = current;
                 prev1 = current;
-            }else{
+            } else {
+                // Add current node to the second sublist
                 prev2.next = current;
                 prev2 = current;
             }
+            // Move current pointer to the next node
             current = current.next;
         }
-        prev1.next = dummy2.next;
+     
+        // Terminate the second sublist
         prev2.next = null;
+        // Merge the sublists
+        prev1.next = dummy2.next;
+     
+        // Update the head of the list
         this.head = dummy1.next;
-        return this
     }
     
 
