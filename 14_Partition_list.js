@@ -187,13 +187,33 @@ class LinkedList {
     //   |   `dummy1.next`.                                  |
     //   +===================================================+
 
+    partitionList(x){
+        if(this.length < 2){
+            return;
+        }
+        let dummy1 = new Node(-1);
+        let dummy2 = new Node(-1);
+        let prev1 = dummy1;
+        let prev2 = dummy2;
+        let current = this.head;
+        while(current !== null){
+            if(current.value < x){
+                prev1.next = current;
+                prev1 = current;
+            }else{
+                prev2.next = current;
+                prev2 = current;
+            }
+            current = current.next;
+        }
+        prev1.next = dummy2.next;
+        prev2.next = null;
+        this.head = dummy1.next;
+        return this
+    }
     
 
 }
-
-
-
-
 
 //  +=====================================================+
 //  |                                                     |
